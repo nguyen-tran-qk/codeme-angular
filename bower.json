@@ -28,7 +28,14 @@
     "codemirror": {
       "main": [
         "lib/codemirror.js",
-        "lib/codemirror.css"
+        "lib/codemirror.css",
+        "mode/javascript/*.js",
+        "mode/html/*.js",
+        "addon/fold/*.js",
+        "addon/fold/*.css",
+        "addon/hint/*.js",
+        "addon/hint/*.css",
+        "theme/**/*.css"
       ]
     }
   }

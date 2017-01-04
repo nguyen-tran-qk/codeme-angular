@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
+const sassGlob = require('gulp-sass-glob');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 
@@ -10,8 +11,9 @@ const conf = require('../conf/gulp.conf');
 gulp.task('styles', styles);
 
 function styles() {
-  return gulp.src(conf.path.src('*.scss'))
+  return gulp.src(conf.path.src('index.scss'))
     .pipe(sourcemaps.init())
+    .pipe(sassGlob())
     .pipe(sass({outputStyle: 'expanded'})).on('error', conf.errorHandler('Sass'))
     .pipe(postcss([autoprefixer()])).on('error', conf.errorHandler('Autoprefixer'))
     .pipe(sourcemaps.write())

@@ -3,3 +3,6 @@ coverage/
 dist/
 node_modules/
 bower_components/
+.firebaserc
+database.rules.json
+firebase.json
