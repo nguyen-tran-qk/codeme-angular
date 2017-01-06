@@ -30,11 +30,15 @@
         "lib/codemirror.js",
         "lib/codemirror.css",
         "mode/javascript/*.js",
-        "mode/html/*.js",
+        "mode/htmlmixed/*.js",
+        "mode/xml/*.js",
+        "mode/css/*.js",
         "addon/fold/*.js",
         "addon/fold/*.css",
+        "addon/edit/*.js",
         "addon/hint/*.js",
         "addon/hint/*.css",
+        "addon/selection/active-line.js",
         "theme/**/*.css"
       ]
     }
