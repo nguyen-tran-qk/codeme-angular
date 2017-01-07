@@ -11,7 +11,7 @@ function partials() {
     .pipe(htmlmin(conf.htmlmin))
     .pipe(angularTemplatecache('templateCacheHtml.js', {
       module: conf.ngModule,
-      root: 'src'
+      root: 'views'
     }))
     .pipe(gulp.dest(conf.path.tmp()));
 }

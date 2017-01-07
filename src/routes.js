@@ -10,7 +10,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider
     .state('app', {
-      // abstract: true,
+      abstract: true,
       url: '',
       templateUrl: 'views/base.html'
     })
