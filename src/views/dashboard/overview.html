@@ -1,0 +1,15 @@
+<div>
+  <a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded">Reports</a>
+  <h2>Overview <small>Why is Ani Theme so awesome?</small></h2>
+  <div class="jumbotron">
+    <div class="container">
+      <select ng-model="vm.mode" ng-click="vm.update()">
+        <option value="">Choose a language to code</option>
+        <option value="javascript">Javascript</option>
+        <option value="htmlmixed">HTML</option>
+      </select>
+    </div>
+    <div id="userlist" class="col-md-2"></div>
+    <div id="firepad" class="col-md-8"></div>
+  </div>
+</div>

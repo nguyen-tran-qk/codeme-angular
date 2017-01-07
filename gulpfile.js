@@ -10,7 +10,7 @@ const hub = new HubRegistry([conf.path.tasks('*.js')]);
 // Tell gulp to use the tasks just loaded
 gulp.registry(hub);
 
-gulp.task('inject', gulp.series(gulp.parallel('styles', 'scripts'), 'inject'));
+gulp.task('inject', gulp.series(gulp.parallel('styles', 'scripts', 'images', 'fonts'), 'inject'));
 gulp.task('build', gulp.series('partials', gulp.parallel('inject', 'other'), 'build'));
 gulp.task('test', gulp.series('scripts', 'karma:single-run'));
 gulp.task('test:auto', gulp.series('watch', 'karma:auto-run'));
@@ -30,7 +30,7 @@ function watch(done) {
     'bower.json'
   ], gulp.parallel('inject'));
 
-  gulp.watch(conf.path.src('app/**/*.html'), gulp.series('partials', reloadBrowserSync));
+  gulp.watch(conf.path.src('**/*.html'), gulp.series('partials', reloadBrowserSync));
   gulp.watch([
     conf.path.src('**/*.scss'),
     conf.path.src('**/*.css')
