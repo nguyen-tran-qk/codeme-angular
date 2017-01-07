@@ -2,7 +2,7 @@
   "name": "fountain-inject",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "1.9.1 - 2",
+    "jquery": "^2.1.14",
     "angular": "^1.6.1",
     "bootstrap": "^3.3.0",
     "angular-animate": "^1.6.1",

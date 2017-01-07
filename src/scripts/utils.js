@@ -8,6 +8,7 @@
     databaseURL: "https://codeme-542e8.firebaseio.com"
   };
   firebase.initializeApp(config);
+  firebase.database.enableLogging(true);
   angular.module('utils', [])
     .factory('Utils', [function() {
       return {
