@@ -29,5 +29,6 @@ function styles() {
   return merge(lessStream, cssStream)
     .pipe(concat('index.css'))
     .pipe(gulp.dest(conf.path.tmp()))
+    .pipe(gulp.dest(conf.paths.dist))
     .pipe(browserSync.stream());
 }
