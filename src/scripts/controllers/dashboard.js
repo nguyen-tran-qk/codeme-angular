@@ -14,7 +14,7 @@ angular.module('app')
     vm.$state = $state;
     
     vm.init = function() {
-      vm.mode = vm.mode || 'htmlmixed';
+      vm.mode = vm.mode || 'javascript';
       
 
       //// Get Firebase Database reference.
@@ -32,7 +32,7 @@ angular.module('app')
           //   if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
           // }
         },
-        mode: vm.mode ? vm.mode : 'htmlmixed',
+        mode: vm.mode ? vm.mode : 'javascript',
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         styleActiveLine: true,
