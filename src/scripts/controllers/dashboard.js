@@ -8,15 +8,15 @@
  * Controller of app
  */
 angular.module('app')
-  .controller('DashboardCtrl', function($scope, $state, $timeout) {
+  .controller('DashboardCtrl', function($scope, $state, $timeout, Utils) {
 
     var vm = this;
     vm.$state = $state;
     
     vm.init = function() {
       vm.mode = vm.mode || 'javascript';
-      
-
+      vm.firebaseApp = Utils.firebaseApp;
+      vm.firepadRefs = Utils.firepadRefs;
       //// Get Firebase Database reference.
       var firepadRef = getExampleRef();
       //// Create CodeMirror (with line numbers and the JavaScript mode).
@@ -78,7 +78,7 @@ angular.module('app')
     };
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
-      var ref = firebase.database().ref();
+      var ref = firebase.database().ref('firepadInstances');
       var hash = window.location.hash.replace(/#/g, '');
       if (hash) {
         ref = ref.child(hash);

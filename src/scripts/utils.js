@@ -7,12 +7,14 @@
     authDomain: "codeme-542e8.firebaseapp.com",
     databaseURL: "https://codeme-542e8.firebaseio.com"
   };
-  firebase.initializeApp(config);
-  firebase.database.enableLogging(true);
+  var firebaseApp = firebase.initializeApp(config);
+  var firepadRefs = firebase.database().ref('firepadInstances');
+  // firebase.database.enableLogging(true);
   angular.module('utils', [])
     .factory('Utils', [function() {
       return {
-
+        firebaseApp: firebaseApp,
+        firepadRefs: firepadRefs
       };
     }]);
 }());
