@@ -12,25 +12,24 @@ angular.module('app')
 
     var vm = this;
     vm.$state = $state;
-    
+
+    //// Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
+    // vm.userId = Math.floor(Math.random() * 9999999999).toString();
+
     vm.init = function() {
       vm.mode = vm.mode || 'javascript';
       vm.firebaseApp = Utils.firebaseApp;
       vm.firepadRefs = Utils.firepadRefs;
+
       //// Get Firebase Database reference.
       var firepadRef = getExampleRef();
+
       //// Create CodeMirror (with line numbers and the JavaScript mode).
       vm.codeMirror = CodeMirror(document.getElementById('firepad'), {
         lineNumbers: true,
         lineWrapping: true,
         extraKeys: {
           "Ctrl-Space": "autocomplete",
-          // "F11": function(cm) {
-          //   cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-          // },
-          // "Esc": function(cm) {
-          //   if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-          // }
         },
         mode: vm.mode ? vm.mode : 'javascript',
         foldGutter: true,
@@ -38,26 +37,30 @@ angular.module('app')
         styleActiveLine: true,
         theme: 'material'
       });
-      // Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
-      var userId = Math.floor(Math.random() * 9999999999).toString();
-      //// Create Firepad (with rich text features and our desired userId).
+
+      if (!vm.userId) {
+        vm.userId = 123456;
+      }
+      //// Create Firepad (with our desired userId).
       var defaultText = '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}';
       if (vm.mode === 'html') {
         defaultText = '<html>\n  <body>\n  </body>\n  </html';
       }
       vm.firepad = Firepad.fromCodeMirror(firepadRef, vm.codeMirror, {
-        userId: userId,
+        userId: vm.userId,
         defaultText: defaultText
       });
       //// Create FirepadUserList (with our desired userId).
       var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
-        document.getElementById('userlist'), userId);
+        document.getElementById('userlist'), vm.userId);
+
       //// Initialize contents.
       // firepad.on('ready', function() {
       //   if (firepad.isHistoryEmpty()) {
       //     firepad.setText('Check out the user list to the left!');
       //   }
       // });
+
       CodeMirror.commands.autocomplete = function(cm) {
         var doc = cm.getDoc();
         var POS = doc.getCursor();
@@ -72,10 +75,11 @@ angular.module('app')
         }
       };
     };
+
     vm.update = function() {
       vm.codeMirror.setOption('mode', vm.mode);
-      // console.log(vm.codeMirror);
     };
+
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
       var ref = firebase.database().ref('firepadInstances');
@@ -83,7 +87,7 @@ angular.module('app')
       if (hash) {
         ref = ref.child(hash);
       } else {
-        ref = ref.push(); // generate unique location.
+        ref = ref.child('file01');
         window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
       }
       if (typeof console !== 'undefined') {
@@ -93,6 +97,8 @@ angular.module('app')
     }
 
     $timeout(function() {
-      vm.init();
+      if (!vm.userId) {
+        vm.init();
+      }
     });
   });
