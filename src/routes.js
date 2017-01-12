@@ -5,6 +5,7 @@ angular
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
+  $urlRouterProvider.when('', '/dashboard/overview');
   $urlRouterProvider.when('/dashboard', '/dashboard/overview');
   $urlRouterProvider.otherwise('/login');
 
@@ -12,7 +13,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('app', {
       abstract: true,
       url: '',
-      templateUrl: 'views/base.html'
+      templateUrl: 'views/base.html',
+      controller: 'MainCtrl',
+      data: {}
     })
     .state('app.login', {
       url: '/login',

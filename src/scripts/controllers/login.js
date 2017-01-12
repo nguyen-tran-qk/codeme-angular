@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of app
  */
-angular.module('app')
+angular.module('appControllers')
   .controller('LoginCtrl', function($scope, $location, $state) {
   	$scope.$state = $location;
     $scope.submit = function() {

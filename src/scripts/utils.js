@@ -8,7 +8,7 @@
     databaseURL: "https://codeme-542e8.firebaseio.com"
   };
   var firebaseApp = firebase.initializeApp(config);
-  var firepadRefs = firebase.database().ref('firepadInstances');
+  var firepadRefs = firebase.database().ref();
   // firebase.database.enableLogging(true);
   angular.module('utils', [])
     .factory('Utils', [function() {
