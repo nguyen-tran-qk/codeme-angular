@@ -52,12 +52,12 @@ angular.module('appControllers')
         defaultText = '<html>\n  <body>\n  </body>\n  </html';
       }
       var firepad = Firepad.fromCodeMirror(firepadRef, vm.codeMirror, {
-        userId: userId,
+        userId: $scope.user.uid,
         defaultText: defaultText
       });
       //// Create FirepadUserList (with our desired userId).
       var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
-        document.getElementById('userlist'), userId);
+        document.getElementById('userlist'), $scope.user.uid);
 
       //// Initialize contents.
       firepad.on('ready', function() {
@@ -101,5 +101,7 @@ angular.module('appControllers')
     //   return ref;
     // }
 
-    vm.init();
+    if ($scope.user) {
+      vm.init();
+    }
   });
